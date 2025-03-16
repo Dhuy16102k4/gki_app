@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Tiêu đề -->
+    <EditText
+        android:id="@+id/edit_text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tiêu đề"
+        android:textSize="18sp"
+        android:textColor="@android:color/black" />
+
+    <!-- Nội dung -->
+    <EditText
+        android:id="@+id/edit_text_notes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="Nội dung"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:gravity="top"
+        android:inputType="textMultiLine" />
+
+    <!-- Hàng chứa 2 nút chọn font và màu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <!-- Nút chọn font chữ -->
+        <Button
+            android:id="@+id/button_font"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chọn font chữ"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Nút chọn màu chữ -->
+        <Button
+            android:id="@+id/button_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Chọn màu chữ"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
+
+    <!-- Nút lưu note -->
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
