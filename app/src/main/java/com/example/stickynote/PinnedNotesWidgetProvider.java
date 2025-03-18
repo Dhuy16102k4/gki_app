@@ -1,5 +1,6 @@
 package com.example.stickynote;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -10,10 +11,24 @@ public class PinnedNotesWidgetProvider extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.pinned_notes_widget);
-        Intent intent = new Intent(context, PinnedNotesWidgetService.class);
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
-        views.setRemoteAdapter(R.id.widget_notes_list, intent);
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.widget_notes_list); // Đảm bảo làm mới dữ liệu
+
+
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+
+        views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
+
+
+        Intent serviceIntent = new Intent(context, PinnedNotesWidgetService.class);
+        serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        views.setRemoteAdapter(R.id.widget_notes_list, serviceIntent);
+
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.widget_notes_list);
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 
@@ -38,11 +53,9 @@ public class PinnedNotesWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        // Không cần làm gì khi widget được tạo lần đầu
     }
 
     @Override
     public void onDisabled(Context context) {
-        // Không cần làm gì khi widget bị xóa cuối cùng
     }
 }
