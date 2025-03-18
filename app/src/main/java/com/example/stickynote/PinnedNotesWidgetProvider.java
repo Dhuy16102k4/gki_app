@@ -12,18 +12,18 @@ public class PinnedNotesWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.pinned_notes_widget);
 
-
+        // Tạo Intent để mở MainActivity
         Intent intent = new Intent(context, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-
+        // Tạo PendingIntent
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
-
+        // Gắn PendingIntent vào toàn bộ widget
         views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
 
-
+        // Thiết lập adapter cho danh sách ghi chú
         Intent serviceIntent = new Intent(context, PinnedNotesWidgetService.class);
         serviceIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
         views.setRemoteAdapter(R.id.widget_notes_list, serviceIntent);
