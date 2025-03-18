@@ -15,7 +15,7 @@ import java.util.Locale;
 
 public class AddNoteActivity extends AppCompatActivity {
     private EditText editTextTitle, editTextNotes;
-    private Button buttonFont, buttonColor, buttonSave;
+    private Button buttonFont, buttonColor, buttonSave ,buttonCancel;
     private String selectedFont = "Arial";
     private int selectedColor = Color.BLACK;
     private Note noteToEdit;
@@ -31,7 +31,7 @@ public class AddNoteActivity extends AppCompatActivity {
         buttonFont = findViewById(R.id.button_font);
         buttonColor = findViewById(R.id.button_color);
         buttonSave = findViewById(R.id.button_save);
-
+        buttonCancel = findViewById(R.id.button_cancel);
         // Kiểm tra xem có note cần chỉnh sửa không
         Intent intent = getIntent();
         if (intent.hasExtra("edit_note")) {
@@ -70,6 +70,7 @@ public class AddNoteActivity extends AppCompatActivity {
         buttonFont.setOnClickListener(v -> showFontDialog());
         buttonColor.setOnClickListener(v -> showColorDialog());
         buttonSave.setOnClickListener(v -> saveNote());
+        buttonCancel.setOnClickListener(v -> finish());
     }
 
     private void showFontDialog() {

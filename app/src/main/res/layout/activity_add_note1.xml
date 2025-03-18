@@ -51,11 +51,29 @@
             android:layout_marginStart="4dp" />
     </LinearLayout>
 
-    <!-- Nút lưu note -->
-    <Button
-        android:id="@+id/button_save"
+    <!-- Hàng chứa nút Lưu và Hủy -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lưu"
-        android:layout_marginTop="16dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <!-- Nút lưu note -->
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lưu"
+            android:layout_marginEnd="4dp" />
+
+        <!-- Nút hủy -->
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hủy"
+            android:layout_marginStart="4dp" />
+    </LinearLayout>
 </LinearLayout>
